@@ -1,3 +1,4 @@
+from collections import deque
 class DFS:
     def __init__(self, table):
         self.len = len(table)
@@ -9,19 +10,14 @@ class DFS:
         self.visited = [False] * (self.len + 1)
         self.result = []
 
-    def recursiveDFS(self, node):
+    def BFS(self, node):
         self.result.append(node)
         self.visited[node] = True
-        for vertex in self.table[node]:
-            if not self.visited[vertex]:
-                self.recursiveDFS(vertex)
-
-    def repeatDFS(self, startNode):
-        stack = [startNode]
-        while stack:
-            node = stack.pop()
+        queue = deque([node])
+        while queue:
+            node = queue.popleft()
             self.result.append(node)
             self.visited[node] = True
-            for i in self.table[node]:
-                if not self.visited[i]:
-                    stack.append(i)
+            for vertex in self.table[node]:
+                if not self.visited[vertex]:
+                    queue.append(vertex)
