@@ -1,24 +1,18 @@
 package main
 
-import (
-	"algorithms"
-	"fmt"
-)
+import "algorithms/linked_list"
 
 func main() {
-	s := Go.InitStack[int](10)
-	s.Push(10)
-	s.Push(20)
-	s.Push(30)
-	s.PrintStack()
-	s.Pop()
-	s.PrintStack()
-	for true {
-		value, err := s.Pop()
-		if err != nil {
-			fmt.Println(err)
-			break
-		}
-		fmt.Println(value)
-	}
+	head := linked_list.InitSinglyLinkedList[int](10)
+	head.InsertLast(30)
+	head.InsertLast(40)
+	head = head.InsertFirst(50)
+	head.InsertMiddle(999, head)
+	head.PrintSinglyLinkedList()
+	head.DeleteLast()
+	head.DeleteFirst()
+	head.PrintSinglyLinkedList()
+	head.DeleteMiddle(head)
+	head.DeleteLast()
+	head.PrintSinglyLinkedList()
 }
