@@ -1,14 +1,9 @@
-package linked_list
+package singly_linked_list
 
 import (
 	"errors"
 	"fmt"
 )
-
-type Node[T any] struct {
-	data T
-	next *Node[T]
-}
 
 func NewNode[T any](data T, next *Node[T]) *Node[T] {
 	return &Node[T]{data: data, next: next}
