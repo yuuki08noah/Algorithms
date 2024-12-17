@@ -1,7 +1,13 @@
 package main
 
-import "algorithms/recursive"
+import (
+	"algorithms/sort"
+	"fmt"
+)
 
 func main() {
-	recursive.HanoiTower[string](4, "A", "B", "C")
+	arr := []int{8, 1, 7, 2}
+	fmt.Println(arr)
+	sort.MergeSort(arr)
+	fmt.Println(arr)
 }
