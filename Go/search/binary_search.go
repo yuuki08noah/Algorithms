@@ -15,7 +15,7 @@ func BinarySearchRecursive[T constraints.Ordered](arr []T, left int, right int, 
 			return BinarySearchRecursive[T](arr, left, mid-1, value)
 		}
 	}
-	return index, found
+	return index, false
 }
 
 func BinarySearchRepeated[T constraints.Ordered](arr []T, value T) (index int, found bool) {
@@ -30,5 +30,5 @@ func BinarySearchRepeated[T constraints.Ordered](arr []T, value T) (index int, f
 			right = mid - 1
 		}
 	}
-	return index, found
+	return index, false
 }

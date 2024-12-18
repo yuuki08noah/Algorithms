@@ -47,7 +47,7 @@ func (q *CircularQueue[T]) Dequeue() (T, error) {
 }
 
 func (q *CircularQueue[T]) PrintCircularQueue() {
-	for i := (q.front + 1) % q.size; i != q.rear; i++ {
+	for i := (q.front + 1) % q.size; (i % q.size) != q.rear+1; i++ {
 		fmt.Print(q.data[i], " ")
 	}
 	fmt.Println()

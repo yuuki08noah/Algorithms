@@ -47,7 +47,7 @@ func (q *LinearQueue[T]) Dequeue() (T, error) {
 }
 
 func (q *LinearQueue[T]) PrintLinearQueue() {
-	for i := q.front + 1; i <= q.rear; i++ {
+	for i := q.front + 1; i <= q.rear+1; i++ {
 		fmt.Print(q.data[i], " ")
 	}
 	fmt.Println()
