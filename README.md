@@ -8,16 +8,15 @@
 **Search** - Linear Search, Binary Search<br>
 **Sort** - Insertion Sort, Bubble Sort, Selection Sort, Quick Sort, Merge Sort<br>
 **HashMap** - Hash Functions, Hash Methods, HashMap ADT<br>
+**Numeical Analysis** - Newton's Method, Bisection Method<br>
 
 ## 완료(Python)
 **DFS, BFS**<br>
 **Segment Tree** - Lazy Propagation<br>
-**Newton's Method and Bisection Method**<br>
 
 ## 예정(Go)
 **DFS, BFS**<br>
 **Segment Tree** - Lazy Propagation<br>
-**Newton's Method and Bisection Method**<br>
 **Topological Sort**<br>
 **Strongly Connected Component** - Tarjan's, Kosaraju's<br>
 **MST** - Kruskal, Prim<br>
