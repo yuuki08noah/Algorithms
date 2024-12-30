@@ -9,6 +9,7 @@
 **Sort** - Insertion Sort, Bubble Sort, Selection Sort, Quick Sort, Merge Sort<br>
 **HashMap** - Hash Functions, Hash Methods, HashMap ADT<br>
 **Numeical Analysis** - Newton's Method, Bisection Method<br>
+**Tree** - Binary Search Tree<br>
 
 ## 완료(Python)
 **DFS, BFS**<br>
