@@ -1,5 +1,5 @@
-from Exceptions.EmptyException import EmptyException
-from Exceptions.FullExeption import FullException
+from Python.Exceptions.EmptyException import EmptyException
+from Python.Exceptions.FullExeption import FullException
 
 
 class Stack:

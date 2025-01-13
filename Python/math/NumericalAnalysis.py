@@ -1,7 +1,7 @@
 import math
 from decimal import Decimal
 
-class SolutionOfEquation():
+class NumericalAnalysis:
     def __init__(self, equation):
         self.function = equation
 
