@@ -12,7 +12,7 @@ class Matrix:
     def __mul__(self, other):
         if len(other.matrix) != len(self.matrix[0]):
             raise MatrixShapeMismatchException()
-        res_matrix = Matrix([0 for _ in range(len(other.matrix[0]))] * len(self.matrix))
+        res_matrix = Matrix([0 for _ in range(len(other.matrix[0]))])
         for i in range(len(self.matrix)):
             temp = [0] * len(other.matrix[0])
             for j in range(len(other.matrix[0])):
@@ -31,3 +31,16 @@ class Matrix:
             for j in range(len(self.matrix[0])):
                 res_matrix.matrix[i][j] = other.matrix[i][j] + res_matrix[i][j]
         return res_matrix
+
+    def __pow__(self, exp):
+        if len(self.matrix) != len(self.matrix[0]):
+            raise MatrixShapeMismatchException()
+        if exp == 1:
+            return self
+        elif exp % 2 == 0:
+            temp = self ** (exp // 2)
+            return temp * temp
+        else:
+            temp = self ** (exp // 2)
+            return self * temp * temp
+
