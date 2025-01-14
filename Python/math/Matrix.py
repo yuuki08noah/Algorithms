@@ -1,4 +1,4 @@
-from Python.Exceptions.MatrixShapeMismatchException import MatrixShapeMismatchException
+from Python.exceptions.MatrixShapeMismatchException import MatrixShapeMismatchException
 
 class Matrix:
     def __init__(self, matrix):
