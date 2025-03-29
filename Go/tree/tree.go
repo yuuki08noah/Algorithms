@@ -7,5 +7,5 @@ type Tree[T constraints.Ordered] interface {
 	Search(value T) (result bool, node *Node[T])
 	Delete(value T) bool
 	PrintTree(node *Node[T], direction string)
-	Root() *Node[int]
+	Root() *Node[T]
 }

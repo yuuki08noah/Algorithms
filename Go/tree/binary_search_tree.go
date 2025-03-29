@@ -99,8 +99,19 @@ func (bst *BinarySearchTree[T]) Delete(key T) bool {
 		} else {
 			node.parent.left = now
 		}
+		bst.reduceLevel(now)
 	}
 	return true
+}
+
+func (bst *BinarySearchTree[T]) reduceLevel(node *Node[T]) {
+	node.level--
+	if node.left != nil {
+		bst.reduceLevel(node.left)
+	}
+	if node.right != nil {
+		bst.reduceLevel(node.right)
+	}
 }
 
 func (bst *BinarySearchTree[T]) PrintTree(node *Node[T], direction string) {
