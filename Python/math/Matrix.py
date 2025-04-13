@@ -38,7 +38,10 @@ class Matrix:
         if self.rows != self.cols:
             raise MatrixShapeMismatchException()
 
-        if exp == 1:
+        if exp == -1:
+            return self.adjoint().scalar_multiplication(1/self.determinant())
+
+        elif exp == 1:
             return self
         elif exp % 2 == 0:
             temp = self ** (exp // 2)
@@ -46,6 +49,15 @@ class Matrix:
         else:
             temp = self ** (exp // 2)
             return self * temp * temp
+
+    def scalar_multiplication(self, n):
+        res_matrix = []
+        for i in range(self.rows):
+            temp = []
+            for j in range(self.cols):
+                temp.append(self.matrix[i][j] * n)
+            res_matrix.append(temp)
+        return Matrix(res_matrix)
 
     def adjoint(self):
         res = []
