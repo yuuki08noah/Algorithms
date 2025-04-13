@@ -1,3 +1,4 @@
+from Python.exceptions.DeterminantZeroException import DeterminantZeroException
 from Python.exceptions.MatrixShapeMismatchException import MatrixShapeMismatchException
 
 class Matrix:
@@ -23,7 +24,7 @@ class Matrix:
                     value += self.matrix[i][k] * other.matrix[k][j]
                 temp[j] = value
             res_matrix.append(temp)
-        return res_matrix
+        return Matrix(res_matrix)
 
     def __add__(self, other):
         if other.rows != self.rows or other.cols != other.cols:
@@ -39,6 +40,8 @@ class Matrix:
             raise MatrixShapeMismatchException()
 
         if exp == -1:
+            if self.determinant() == 0:
+                raise DeterminantZeroException("Determinant cannot be zero")
             return self.adjoint().scalar_multiplication(1/self.determinant())
 
         elif exp == 1:
