@@ -47,8 +47,17 @@ class Matrix:
             temp = self ** (exp // 2)
             return self * temp * temp
 
-    def transpose(self):
-        transposed = list(map(list, zip(*self.matrix)))
+    def adjoint(self):
+        res = []
+        for i in range(self.rows):
+            temp = []
+            for j in range(self.cols):
+                temp.append(((-1)**(i+j))*self.determinant(self.cofactor(None, i, j)))
+            res.append(temp)
+        return self.transpose(res)
+
+    def transpose(self, matrix):
+        transposed = list(map(list, zip(*matrix)))
         return Matrix(transposed)
 
     def determinant(self, matrix=None):
