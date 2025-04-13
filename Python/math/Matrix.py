@@ -14,7 +14,7 @@ class Matrix:
     def __mul__(self, other):
         if other.rows != self.cols:
             raise MatrixShapeMismatchException()
-        res_matrix = Matrix([0 for _ in range(other.cols)])
+        res_matrix = []
         for i in range(self.rows):
             temp = [0] * other.cols
             for j in range(other.cols):
@@ -22,7 +22,7 @@ class Matrix:
                 for k in range(other.rows):
                     value += self.matrix[i][k] * other.matrix[k][j]
                 temp[j] = value
-            res_matrix.matrix[i] = temp
+            res_matrix.append(temp)
         return res_matrix
 
     def __add__(self, other):
