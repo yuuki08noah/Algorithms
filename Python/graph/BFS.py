@@ -1,5 +1,5 @@
 from collections import deque
-class DFS:
+class BFS:
     def __init__(self, table):
         self.len = len(table)
         self.table = table
@@ -11,11 +11,10 @@ class DFS:
         self.result = []
 
     def BFS(self, node):
-        self.result.append(node)
-        self.visited[node] = True
         queue = deque([node])
         while queue:
             node = queue.popleft()
+            if self.visited[node]: continue
             self.result.append(node)
             self.visited[node] = True
             for vertex in self.table[node]:

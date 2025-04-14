@@ -1,10 +1,14 @@
-from Python.math.Matrix import Matrix
-A = [
-    [2, 1, 0, 3, 4],
-    [1, 2, 1, 1, 0],
-    [3, 0, 2, 4, 1],
-    [0, 1, 3, 2, 5],
-    [4, 2, 1, 0, 3]
-]
-m = Matrix(A)
-print((m**-1)*m)
+from Python.graph.Dijkstra import Dijkstra
+
+graph = {
+    1: [(20, 2), (13, 4), (6, 7)],
+    2: [(6, 5), (12, 4)],
+    3: [(7, 2), (14, 5)],
+    4: [(9, 7), (10, 5)],
+    5: [],
+    6: [(11, 3)],
+    7: [(10, 6)]
+}
+
+A = Dijkstra(graph, 1)
+print(A.dijkstra())
