@@ -12,16 +12,14 @@
 **Tree** - Binary Search Tree<br>
 
 ## 완료(Python)
-**DFS, BFS**<br>
-**Segment Tree**<br>
 **Heap** - Min Heap, Max Heap<br>
-**Binary Search Tree**<br>
+**Tree** - Binary Search Tree, Segment Tree<br>
 **MarkAndSweep**<br>
-**Dijkstra**<br>
-**Strongly Connected Component** - Kosaraju's<br>
+**Graph** - DFS, BFS, Kosaraju's Strongly Connected Component<br>
+**Shortest Path** - Dijkstra<br>
 **Linked List** - Singly Linked List, Doubly Linked List, Circular Linked List<br>
 **Math** - Matrix, Numerical Analysis, Polynomial, Taylor Series<br>
 **Search** - Binary Search, Linear Search<br>
-**Sort** - Merge Sort, Quick Sort<br>
+**Sort** - Merge Sort, Quick Sort, Bucket Sort<br>
 **Stack**
 
