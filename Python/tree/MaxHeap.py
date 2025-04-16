@@ -12,7 +12,7 @@ class MaxHeap:
 
     def insert(self, key):
         self.top += 1
-        if self.top >= self.size:
+        if self.top > self.size:
             raise FullException("Heap")
         self.heap[self.top] = key
         point = self.top
@@ -28,11 +28,13 @@ class MaxHeap:
         self.heap[1] = self.heap[self.top]
         self.top -= 1
         point = 1
-        while point != self.top and (self.heap[point] < self.heap[point*2] or self.heap[point] < self.heap[point*2+1]):
-            if self.heap[point*2] < self.heap[point*2+1]:
-                self.heap[point], self.heap[point*2+1] = self.heap[point*2+1], self.heap[point]
-                point = point*2 + 1
-            else:
-                self.heap[point], self.heap[point*2] = self.heap[point*2], self.heap[point]
-                point = point*2
+        while point * 2 <= self.top:
+            min_child = point * 2
+
+            if point*2 + 1 <= self.top and self.heap[point*2] < self.heap[point*2+1]:
+                min_child = point * 2 + 1
+            if self.heap[point] < self.heap[min_child]:
+                self.heap[point], self.heap[min_child] = self.heap[min_child], self.heap[point]
+                point = min_child
+            else: break
         return res
