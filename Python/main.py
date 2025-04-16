@@ -1,6 +1,7 @@
 from Python.tree.MaxHeap import MaxHeap
+from Python.tree.MinHeap import MinHeap
 
-heap = MaxHeap(10)
+heap = MinHeap(10)
 print(heap.insert(1))
 print(heap.insert(9))
 print(heap.insert(10))
