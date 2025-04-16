@@ -13,14 +13,15 @@
 
 ## 완료(Python)
 **DFS, BFS**<br>
-**Segment Tree** - Lazy Propagation<br>
-
-## 예정(Go)
-**DFS, BFS**<br>
-**Segment Tree** - Lazy Propagation<br>
-**Topological Sort**<br>
-**Strongly Connected Component** - Tarjan's, Kosaraju's<br>
-**MST** - Kruskal, Prim<br>
-**Bipartite Graph**<br>
-**Tree**
+**Segment Tree**<br>
+**Heap** - Min Heap, Max Heap<br>
+**Binary Search Tree**<br>
+**MarkAndSweep**<br>
+**Dijkstra**<br>
+**Strongly Connected Component** - Kosaraju's<br>
+**Linked List** - Singly Linked List, Doubly Linked List, Circular Linked List<br>
+**Math** - Matrix, Numerical Analysis, Polynomial, Taylor Series<br>
+**Search** - Binary Search, Linear Search<br>
+**Sort** - Merge Sort, Quick Sort<br>
+**Stack**
 
