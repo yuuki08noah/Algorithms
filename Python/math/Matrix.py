@@ -53,52 +53,47 @@ class Matrix:
             temp = self ** (exp // 2)
             return self * temp * temp
 
-    def scalar_multiplication(self, n):
-        res_matrix = []
-        for i in range(self.rows):
-            temp = []
-            for j in range(self.cols):
-                temp.append(self.matrix[i][j] * n)
-            res_matrix.append(temp)
-        return Matrix(res_matrix)
-
-    def adjoint(self):
-        res = []
-        for i in range(self.rows):
-            temp = []
-            for j in range(self.cols):
-                temp.append(((-1)**(i+j))*self.determinant(self.cofactor(None, i, j)))
-            res.append(temp)
-        return self.transpose(res)
-
     def transpose(self, matrix):
         transposed = list(map(list, zip(*matrix)))
         return Matrix(transposed)
 
-    def determinant(self, matrix=None):
-        if matrix is None:
-            matrix = self.matrix
-        if len(matrix) != len(matrix[0]):
-            raise MatrixShapeMismatchException()
-        if len(matrix) == 1:
-            return matrix[0][0]
-        elif len(matrix) == 2:
-            return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
-        else:
-            res = 0
-            for j in range(len(matrix[0])):
-                res += matrix[0][j]*((-1)**(0+j))*self.determinant(self.cofactor(matrix, 0, j))
-            return res
+    def scala_multiplication(self, x, matrix):
+        new_matrix = []
+        for i in range(matrix.rows):
+            temp = []
+            for j in range(matrix.cols):
+                temp.append(x * matrix.matrix[i][j])
+            new_matrix.append(temp)
+        return Matrix(new_matrix)
 
-    def cofactor(self, matrix, i, j):
-        if matrix is None:
-            matrix = self.matrix
-        temp = []
-        for k in range(len(matrix)):
-            if k == i: continue
-            row = []
-            for l in range(len(matrix[0])):
-                if l == j: continue
-                row += [matrix[k % len(matrix)][l % len(matrix[0])]]
-            temp.append(row)
-        return temp
+    def determinant(self, matrix):
+        if matrix.rows == 1:
+            return matrix.matrix[0][0]
+        elif matrix.rows == 2:
+            return matrix.matrix[0][0] * matrix.matrix[1][1] - matrix.matrix[0][1] * matrix.matrix[1][0]
+        else:
+            temp = 0
+            for j in range(matrix.cols):
+                temp += (-1) ** j * matrix.matrix[0][j] * self.determinant(self.cofactor(matrix, 0, j))
+            return temp
+
+    def cofactor(self, matrix, x, y):
+        new_matrix = []
+        for i in range(matrix.rows):
+            temp = []
+            if i == x: continue
+            for j in range(matrix.cols):
+                if j == y: continue
+                temp.append(matrix.matrix[i][j])
+            new_matrix.append(temp)
+        return Matrix(new_matrix)
+
+    def adjoint(self, matrix):
+        new_matrix = []
+        for i in range(matrix.rows):
+            temp = []
+            for j in range(matrix.cols):
+                temp.append((-1) ** (i + j) * self.determinant(self.cofactor(matrix, i, j)))
+            new_matrix.append(temp)
+
+        return self.transpose(Matrix(new_matrix))
