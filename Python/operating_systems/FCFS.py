@@ -1,5 +1,3 @@
-from collections import deque
-
 class FCFS:
     def __init__(self, processes):
         self.processes = dict(sorted(processes.items()))
