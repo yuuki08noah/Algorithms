@@ -19,7 +19,7 @@ class SJF:
 
             if len(self.queue) != 0 and not current:
                 current = heapq.heappop(self.queue)
-                print(f"current process: {current[1]} remaining time: {current[0][0]}")
+                print(f"cp {cp} current process: {current[1]} remaining time: {current[0][0]}")
             cp += 1
             if current:
                 current[0][0] -= 1
