@@ -9,7 +9,8 @@ class MFQ:
         self.return_time = [0] * self.number_of_processes
         self.burst_time = burst_time
         self.boost_time = boost_time
-        self.processes = dict(sorted(processes.items()))
+        self.processes = sorted(processes.items(), key=lambda item: item[1][0])
+        print(self.processes)
 
     # self.processes
     # [arrival_time, burst_time]
@@ -33,8 +34,8 @@ class MFQ:
                 break
 
             # 프로세스가 도착했을 때 넣음
-            while process_number < self.number_of_processes and self.processes[process_number][0] == cp:
-                self.queue[0].append([process_number, self.processes[process_number]])
+            while process_number < self.number_of_processes and self.processes[process_number][1][0] == cp:
+                self.queue[0].append([self.processes[process_number][0], self.processes[process_number][1]])
                 process_number += 1
 
             # Running 이 없을 때

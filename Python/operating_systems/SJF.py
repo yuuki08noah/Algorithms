@@ -2,7 +2,7 @@ import heapq
 
 class SJF:
     def __init__(self, processes):
-        self.processes = dict(sorted(processes.items(), key=lambda item: item[1]))
+        self.processes = sorted(processes.items(), key=lambda item: item[1][1])
         self.number_of_processes = len(processes)
         self.queue = []
         self.return_time = [0] * self.number_of_processes
@@ -13,8 +13,8 @@ class SJF:
         current = None
         process_arrival = 0
         while True:
-            if process_arrival < self.number_of_processes and self.processes[process_arrival][1] == cp:
-                heapq.heappush(self.queue, [self.processes[process_arrival], process_arrival])
+            if process_arrival < self.number_of_processes and self.processes[process_arrival][1][1] == cp:
+                heapq.heappush(self.queue, [self.processes[process_arrival][1], self.processes[process_arrival][0]])
                 process_arrival += 1
 
             if len(self.queue) != 0 and not current:
