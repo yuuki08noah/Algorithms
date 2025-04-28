@@ -14,6 +14,10 @@ class DynamicSegmentTree:
     nodes: List[Node] = []
     roots = []
     size = 0
+    default = 0
+
+    def merge(self, left, right):
+        return left + right
 
     def __init__(self, arr):
         self.size = 1
@@ -27,7 +31,7 @@ class DynamicSegmentTree:
         mid = (start + end) // 2
         node.left = self.build(Node(), start, mid, arr)
         node.right = self.build(Node(), mid+1, end, arr)
-        node.val = node.left.val + node.right.val
+        node.val = self.merge(node.left.val, node.right.val)
         return node
 
     def update(self, node, start, end, idx, val):
@@ -48,26 +52,13 @@ class DynamicSegmentTree:
 
         v1 = node.left.val if node.left else 0
         v2 = node.right.val if node.right else 0
-        node.val = v1 + v2
+        node.val = self.merge(v1, v2)
         return node
 
-    def query(self, node, start, end, left, right):
+    def query(self, node, start, end, target):
         if not node: return 0
-        if right < start or end < left: return 0
-        if left <= start and end <= right: return node.val
+        if start == end: return start
         mid = (start + end) // 2
-        return self.query(node.left, start, mid, left, right) + self.query(node.right, mid+1, end, left, right)
-
-n = int(input())
-arr = [0] + list(map(int, input().split()))
-tree = DynamicSegmentTree(arr)
-tree.roots.append(tree.root)
-m = int(input())
-for i in range(m):
-    l = list(map(int, input().split()))
-    if l[0] == 1:
-        tree.root = tree.update(tree.root, 1, n, l[1], l[2])
-        tree.roots.append(tree.root)
-    else:
-        print(tree.query(tree.roots[l[1]], 1, n, l[2], l[3]))
-
+        if node.left.val >= target:
+            return self.query(node.left, start, mid, target)
+        return self.query(node.right, mid+1, end, target)
