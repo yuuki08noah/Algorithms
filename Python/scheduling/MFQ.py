@@ -10,7 +10,6 @@ class MFQ:
         self.burst_time = burst_time
         self.boost_time = boost_time
         self.processes = sorted(processes.items(), key=lambda item: item[1][0])
-        print(self.processes)
 
     # self.processes
     # [arrival_time, burst_time]
@@ -81,9 +80,7 @@ class MFQ:
                     self.return_time[process[0]] = cp - process[1][0]
 
 
-mfq = MFQ(number_of_queue=3, burst_time=[4, 8, 16], boost_time=[0, 16, 32], processes={0:[0, 12], 1:[3, 6], 2:[4, 9], 3: [10, 16], 4: [22, 7], 5: [30, 4]})
+mfq = MFQ(number_of_queue=3, burst_time=[20, 40, 100000], boost_time=[0, 80, 160], processes={0:[0, 150], 1:[20, 90], 2:[40, 200], 3: [60, 120], 4: [80, 80], 5: [100, 160]})
 mfq.execute()
-print(mfq.wait_time_accumulated)
-print(sum(mfq.wait_time_accumulated)/len(mfq.wait_time_accumulated))
-print(mfq.return_time)
-print(sum(mfq.return_time)/len(mfq.return_time))
+print(f"average wait time : {sum(mfq.wait_time_accumulated)/len(mfq.wait_time_accumulated)}")
+print(f"average return time : {sum(mfq.return_time)/len(mfq.return_time)}")

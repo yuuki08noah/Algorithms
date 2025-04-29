@@ -62,3 +62,21 @@ class DynamicSegmentTree:
         if node.left.val >= target:
             return self.query(node.left, start, mid, target)
         return self.query(node.right, mid+1, end, target)
+
+    def get_nth_bigger(self, node, start, end, nth):
+        if not node or node.val < nth: return -1
+        if start == end: return start
+        mid = (start + end) // 2
+        right_val = node.right.val if node.right else 0
+        if right_val >= nth:
+            return self.get_nth_bigger(node.right, mid+1, end, nth)
+        return self.get_nth_bigger(node.left, start, mid, nth-right_val)
+
+    def get_nth_smaller(self, node, start, end, nth):
+        if not node or node.val < nth: return -1
+        if start == end: return start
+        mid = (start + end) // 2
+        left_val = node.left.val if node.left else 0
+        if left_val >= nth:
+            return self.get_nth_smaller(node.left, start, end, nth)
+        return self.get_nth_smaller(node.right, mid+1, end, nth-left_val)
