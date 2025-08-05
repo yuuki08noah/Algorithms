@@ -45,6 +45,7 @@ class MFQ:
                     i += 1
                 q_num = i
                 if i != self.number_of_queue:
+                    self.queue[i].sort()
                     process = self.queue[i].pop(0)
                     self.wait_time[process[0]] = 0
                     print(f"queue {str(self.queue):<60}, clock {cp:<4}, process {(process[0] if process else None):<2}, remaining time {(process[1][1] if process else None):<3}, burst time {self.burst_time[q_num]:<3}")
@@ -80,7 +81,7 @@ class MFQ:
                     self.return_time[process[0]] = cp - process[1][0]
 
 
-mfq = MFQ(number_of_queue=3, burst_time=[20, 40, 100000], boost_time=[0, 80, 160], processes={0:[0, 150], 1:[20, 90], 2:[40, 200], 3: [60, 120], 4: [80, 80], 5: [100, 160]})
+mfq = MFQ(number_of_queue=3, burst_time=[20, 40, 100000], boost_time=[0, 80, 160], processes={0:[0, 100], 1: [20, 90], 2: [40, 200], 3: [60, 120], 4: [80, 80], 5: [100, 160]})
 mfq.execute()
 print(f"average wait time : {sum(mfq.wait_time_accumulated)/len(mfq.wait_time_accumulated)}")
 print(f"average return time : {sum(mfq.return_time)/len(mfq.return_time)}")
