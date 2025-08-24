@@ -1,3 +1,6 @@
+import sys
+sys.setrecursionlimit(10**6)
+
 class Node:
     def __init__(self, data, left=None, right=None, parent=None, direction=None):
         self.data = data
@@ -10,7 +13,7 @@ class BinarySearchTree:
     def __init__(self):
         self.root = None
 
-    def insert(self, data):
+    def insert(self, data, node):
         if self.root is None:
             self.root = Node(data, direction='root')
             return self.root
@@ -27,7 +30,7 @@ class BinarySearchTree:
         else:
             temp.right = Node(data, parent=temp, direction="right")
 
-    def search(self, data):
+    def search(self, data, node):
         if self.root is None:
             return None
         node = self.root
@@ -48,8 +51,8 @@ class BinarySearchTree:
             node = node.left
         return node
 
-    def remove(self, data):
-        res = self.search(data)
+    def delete(self, data, node):
+        res = self.search(data, self.root)
         if res is None:
             return None
         if res.left is None and res.right is None:
@@ -76,3 +79,64 @@ class BinarySearchTree:
             else:
                 res.parent.right = res.right
                 res.right.parent = res.parent
+
+class BST:
+    def __init__(self):
+        self.root = None
+
+    # 삽입
+    def insert(self, data, asdf):
+        def _insert(node, data):
+            if node is None:
+                return Node(data)
+            if data < node.data:
+                node.left = _insert(node.left, data)
+            elif data > node.data:
+                node.right = _insert(node.right, data)
+            # 같으면 아무것도 안 함 (중복 X)
+            return node
+
+        self.root = _insert(self.root, data)
+
+    # 탐색
+    def search(self, data, node=None):
+        if node is None:
+            return None
+        if data < node.data:
+            return self.search(data, node.left)
+        elif data > node.data:
+            return self.search(data, node.right)
+        else:
+            return node
+
+    # 삭제
+    def delete(self, data, node=None):
+        if node is None:
+            node = self.root
+        if node is None:
+            return None
+
+        if data < node.data:
+            node.left = self.delete(data, node.left)
+        elif data > node.data:
+            node.right = self.delete(data, node.right)
+        else:
+            # 삭제할 노드 찾음
+            if node.left is None:
+                return node.right
+            elif node.right is None:
+                return node.left
+            else:
+                succ = self._min_value_node(node.right)
+                node.data = succ.data
+                node.right = self.delete(succ.data, node.right)
+
+        if node == self.root:
+            self.root = node
+        return node
+
+    def _min_value_node(self, node):
+        current = node
+        while current.left:
+            current = current.left
+        return current
